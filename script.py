@@ -80,34 +80,3 @@ finalURL = beginURL+radio+"/"+day+"/"+hour+".mp3"
 print(finalURL)
 download = requests.get(str(finalURL))
 open(str(finalName)+str(".mp3"), 'wb').write(download.content)
-
-
-######################################################################
-# today = date.today()
-# print(today)
-# todayName = today.strftime("%A")
-
-# nbArgsCLI = len(sys.argv)-1
-# print("Vous avez passé", nbArgsCLI, "arguments.")
-
-# #Si aucune émission demandée dans le CLI au format "Monday", on télécharge l'émission du jour
-# global dayToDownload 
-# if int(nbArgsCLI) == 0:
-#     dayToDownload = todayName
-#     print("Aucun jour spécifié, nous téléchargeons aujourd'hui")
-#     finalName = today
-
-# else:
-#     dayToDownload = str(sys.argv[1])
-#     print("Nous allons télécharger", dayToDownload)
-#     finalName = "Last " + dayToDownload
-    
-
-# #Quelle heure on souhaite télécharger ?
-# hourToDownload = 21
-# beginURL = "http://pige.alexandremartinat.com/Frequence3/"
-# endURL = str(hour)+".mp3"
-# finalURL = beginURL+dayToDownload+"/"+endURL
-# #URL de test: finalURL = "http://localhost/test.png"
-# download = requests.get(str(finalURL))
-# open(str(finalName)+str(".mp3"), 'wb').write(download.content)
