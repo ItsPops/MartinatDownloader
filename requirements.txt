@@ -1,0 +1,7 @@
+beautifulsoup4==4.10.0
+blessed==1.19.1
+inquirer==2.9.1
+pandas==1.4.1
+prompt-toolkit==3.0.28
+python-dateutil==2.8.2
+requests==2.26.0
