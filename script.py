@@ -20,7 +20,7 @@ URL = "http://piges.alexandremartinat.com"
 page = requests.get(URL)
 soup = BeautifulSoup(page.content, "html.parser")
 table = soup.find_all('table')[0] 
-parsedTable = soup.find_all("tr", class_="col1")
+parsedTable = soup.find_all("tr", {'class':['col0', 'col1']})
 
 #On trie les valeurs du tableau renvoyé par le site et nettoyé par BS
 urls = []
