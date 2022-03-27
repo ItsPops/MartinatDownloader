@@ -1,3 +1,5 @@
 env/
 .DS_Store
 .vscode/settings.json
+script v2.py
+arguments.py

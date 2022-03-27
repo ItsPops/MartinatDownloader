@@ -31,52 +31,44 @@ for radioLinks in parsedTable:
     urls.append(finalList)  
 
 #On demande la radio que l'utilisateur souhaite télécharger
-whichChannelToDownload = [
+chosen_radio = [
   inquirer.List('channelToDownload',
                 message="Quelle chaîne souhaitez-vous télécharger ?",
                 choices=urls
             ),
 ]
-userAnswerRadio = inquirer.prompt(whichChannelToDownload)
-userAnswerRadioFirstParsing=str(userAnswerRadio).replace("{'channelToDownload': '", '')
-userAnswerRadioFinalParsing=str(userAnswerRadioFirstParsing).replace("'}", '')
-radio = userAnswerRadioFinalParsing
-print("Nous allons télécharger", radio)
+user_answer = inquirer.prompt(chosen_radio)
+radio = user_answer.get('channelToDownload')
+print("Downloading from", radio)
 
 #On demande le jour que l'utilisateur souhaite télécharger
-whichDayToDownload = [
+chosen_day = [
   inquirer.List('dayToDownload',
-                message="Quel jour souhaitez-vous télécharger ?",
+                message="Which day do you wish to download ?",
                 choices=("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
             ),
 ]
-userAnswerDay = inquirer.prompt(whichDayToDownload)
-userAnswerDayFirstParsing=str(userAnswerDay).replace("{'dayToDownload': '", '')
-userAnswerDayFinalParsing=str(userAnswerDayFirstParsing).replace("'}", '')
-day = userAnswerDayFinalParsing
-print("Nous allons télécharger l'émission de", day)
-
+user_answer = inquirer.prompt(chosen_day)
+day = user_answer.get('dayToDownload')
+print("Downloading from", day)
 
 #On demande l'heure que l'utilisateur souhaite télécharger
-whichHourToDownload = [
+chosen_hour = [
   inquirer.List('hourToDownload',
                 message="Quelle heure souhaitez-vous télécharger ?",
                 choices=("00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24")
             ),
 ]
-userAnswerHour = inquirer.prompt(whichHourToDownload)
-userAnswerHourFirstParsing=str(userAnswerHour).replace("{'hourToDownload': '", '')
-userAnswerHourFinalParsing=str(userAnswerHourFirstParsing).replace("'}", '')
-hour = userAnswerHourFinalParsing
-print("Nous allons télécharger l'émission de", hour,"h")
+user_answer = inquirer.prompt(chosen_hour)
+hour = user_answer.get('hourToDownload')
+print("Downloading from", hour,"hour")
 
 #On définit le nom final du fichier selon la radio, le jour téléchargé et l'heure
-finalName = radio+" - "+"Last "+day+" - "+hour+"h"
-print(finalName)
+final_name = radio+" - "+"Last "+day+" - "+hour+"h"
+print("File will be named", final_name)
 
 #Nous téléchargeons l'URL définie par les paramètres choisis
-beginURL = "http://pige.alexandremartinat.com/"
-finalURL = beginURL+radio+"/"+day+"/"+hour+".mp3"
-print(finalURL)
-download = requests.get(str(finalURL))
-open(str(finalName)+str(".mp3"), 'wb').write(download.content)
+downloading_URL = URL+"/"+radio+"/"+day+"/"+hour+".mp3"
+print("Download link is", downloading_URL)
+download = requests.get(str(downloading_URL))
+open(str(final_name)+str(".mp3"), 'wb').write(download.content)
